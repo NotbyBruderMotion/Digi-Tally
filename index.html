@@ -1,13 +1,22 @@
 <!DOCTYPE html>
+<!--
+  DigiTally
+  Copyright (c) 2026 BruderMotion. All rights reserved.
+  Proprietary software. Copying, modifying, republishing or redistributing this
+  code, in whole or in part, is not permitted without written permission.
+  See LICENSE. Versions released before 6 Nov 2026 were licensed under GPL-3.0.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="author" content="BruderMotion" />
+  <meta name="copyright" content="© 2026 BruderMotion. All rights reserved." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DigiTally — by Bruder Motion</title>
+  <title>DigiTally by BruderMotion</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.19.0/fonts/tabler-icons.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.19.0/tabler-icons.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -193,12 +202,12 @@
 </head>
 <body>
 
-  <span class="side-brand left">Bruder Motion</span>
-  <span class="side-brand right">Bruder Motion</span>
+  <span class="side-brand left">BruderMotion</span>
+  <span class="side-brand right">BruderMotion</span>
 
   <div class="sticky-brand" id="stickyBrand">
     <div class="sb-logo"><span>D</span>igi<span>T</span>ally</div>
-    <div class="sb-eyebrow">Bruder Motion</div>
+    <div class="sb-eyebrow">BruderMotion</div>
   </div>
 
   <div class="top-controls">
@@ -220,7 +229,7 @@
   <!-- Auth Screen -->
   <div class="auth-screen" id="authScreen" style="display:none;">
     <div class="auth-card">
-      <div class="auth-eyebrow">Bruder Motion</div>
+      <div class="auth-eyebrow">BruderMotion</div>
       <div class="auth-logo"><span class="accent">D</span>igi<span class="accent">T</span>ally</div>
       <div class="auth-sub">Track what's owed. Know when it's due.</div>
       <div class="auth-error" id="authError"></div>
@@ -241,7 +250,7 @@
   <div class="app-screen" id="appScreen">
     <div class="page">
       <header class="header">
-        <div class="eyebrow">Bruder Motion</div>
+        <div class="eyebrow">BruderMotion</div>
         <div class="header-top">
           <h1><span>D</span>igi<span>T</span>ally</h1>
         </div>
@@ -312,7 +321,7 @@
       </div>
 
       <footer class="footer">
-        <p>Built by <a href="https://www.youtube.com/@BruderMotion" target="_blank">Bruder Motion</a> — open source, data synced to cloud.</p>
+        <p>Built by <a href="https://www.youtube.com/@BruderMotion" target="_blank">BruderMotion</a> — data synced to cloud.<br>© 2026 BruderMotion. All rights reserved.</p>
       </footer>
     </div>
   </div>
@@ -472,13 +481,13 @@
   <div id="reportShareScreen" style="display:none;">
     <div class="page">
       <header class="header">
-        <div class="eyebrow">Bruder Motion</div>
+        <div class="eyebrow">BruderMotion</div>
         <div class="header-top"><h1><span>D</span>igi<span>T</span>ally</h1></div>
         <div class="header-sub" id="reportShareDateLabel"></div>
       </header>
       <div id="reportShareResults" style="display:flex;flex-direction:column;gap:10px;margin-bottom:2rem;"></div>
       <footer class="footer">
-        <p>Built by <a href="https://www.youtube.com/@BruderMotion" target="_blank">Bruder Motion</a> — Share Overview, read-only</p>
+        <p>Built by <a href="https://www.youtube.com/@BruderMotion" target="_blank">BruderMotion</a> — Share Overview, read-only<br>© 2026 BruderMotion. All rights reserved.</p>
       </footer>
     </div>
   </div>
@@ -487,7 +496,7 @@
   <div id="shareScreen" style="display:none;">
     <div class="page">
       <header class="header">
-        <div class="eyebrow">Bruder Motion</div>
+        <div class="eyebrow">BruderMotion</div>
         <div class="header-top">
           <h1><span>D</span>igi<span>T</span>ally</h1>
         </div>
@@ -500,7 +509,7 @@
       </div>
       <div class="entries-list" id="shareEntriesList"></div>
       <footer class="footer" style="margin-top:2rem;">
-        <p>Built by <a href="https://www.youtube.com/@BruderMotion" target="_blank">Bruder Motion</a> — read-only shared view</p>
+        <p>Built by <a href="https://www.youtube.com/@BruderMotion" target="_blank">BruderMotion</a> — read-only shared view<br>© 2026 BruderMotion. All rights reserved.</p>
       </footer>
     </div>
   </div>
@@ -538,7 +547,8 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-    import { getFirestore, doc, setDoc, getDoc, deleteDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app-check.js";
+    import { getFirestore, doc, setDoc, getDoc, updateDoc, deleteDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBhc8tB-rOLRQJo_XlojD6r7kzo4jL8bH4",
@@ -550,6 +560,16 @@
     };
 
     const app = initializeApp(firebaseConfig);
+
+    // ── App Check: only the genuine DigiTally site/app may use this backend ──
+    // Paste your reCAPTCHA v3 site key below (Firebase console > App Check > Apps).
+    const APPCHECK_SITE_KEY = '';
+    if (APPCHECK_SITE_KEY && !window.__DIGITALLY_NATIVE__) {
+      try {
+        initializeAppCheck(app, { provider: new ReCaptchaV3Provider(APPCHECK_SITE_KEY), isTokenAutoRefreshEnabled: true });
+      } catch (e) { console.warn('App Check not started', e); }
+    }
+    console.log('%cDigiTally — ' + '%s', 'font-weight:bold;color:#c9401a', '© 2026 BruderMotion. All rights reserved. Copying or republishing this app is not permitted.');
     const auth = getAuth(app);
     const db = getFirestore(app);
 
@@ -603,8 +623,10 @@
         const parts = new Intl.NumberFormat(undefined, { style: 'currency', currency: code, currencyDisplay: 'narrowSymbol' }).formatToParts(0);
         const s = parts.find(p => p.type === 'currency');
         return s ? s.value : code;
-      } catch (e) { return code; }
+      } catch (e) { return escHtml(String(code)); }
     }
+    // Share/report data comes from the database; only accept real 3-letter currency codes.
+    function safeCur(code) { return (typeof code === 'string' && /^[A-Z]{3}$/.test(code)) ? code : 'USD'; }
     function currencyName(code) {
       try { return new Intl.DisplayNames(['en'], { type: 'currency' }).of(code) || code; }
       catch (e) { return code; }
@@ -799,6 +821,7 @@
             renderClients();
             render();
             maybeOnboard();
+            if (sweepOrphanLinks()) saveToCloud();
           } catch(e) {}
         } else if (firstLoad) {
           // new account, modal already opened via auth metadata
@@ -880,10 +903,6 @@
           document.getElementById('modalOverlay').classList.add('visible');
         }
         listenToCloud(user.uid);
-        // Quietly record last-opened time (server clock) for usage insight
-        try {
-          setDoc(doc(db, 'activity', user.uid), { email: user.email, lastOpened: serverTimestamp() });
-        } catch (e) {}
       } else {
         document.getElementById('authScreen').style.display = 'flex';
         document.getElementById('appScreen').classList.remove('visible');
@@ -953,9 +972,89 @@
           delete state[key][oldName];
         }
       });
+      renameClientInLinks(oldName, newName);
       if (state.activeClient === oldName) state.activeClient = newName;
       saveToCloud(); renderClients(); render(); renderManageClients();
       return true;
+    }
+
+    // Changes to a link's saved copy run one at a time, in order, so two quick
+    // changes (for example rename, then delete) can't undo each other.
+    // They use updateDoc, which fails on a deleted link, so a revoked or
+    // regenerated link can never come back.
+    let linkEdits = Promise.resolve();
+    function queueLinkEdit(fn) {
+      linkEdits = linkEdits.then(fn).catch(() => {});
+      return linkEdits;
+    }
+    // Rewrite a report link's saved copy so it holds exactly the clients in keepNames.
+    // nameMap renames clients on the way (old name -> new name).
+    function rewriteReportDoc(token, keepNames, nameMap) {
+      if (!token) return;
+      const map = nameMap || {};
+      const has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+      const targets = Object.values(map);
+      queueLinkEdit(async () => {
+        const ref = doc(db, 'reports', token);
+        const snap = await getDoc(ref);
+        if (!snap.exists()) return;
+        let cd = {};
+        try { cd = JSON.parse(snap.data().clients || '{}') || {}; } catch(e) { cd = {}; }
+        const out = {};
+        Object.keys(cd).forEach(k => {
+          if (targets.includes(k) && !has(map, k)) return;   // stale copy under the new name
+          const name = has(map, k) ? map[k] : k;
+          if (keepNames.includes(name)) out[name] = cd[k];
+        });
+        if (!Object.keys(out).length) return deleteDoc(ref);
+        return updateDoc(ref, { clients: JSON.stringify(out) });
+      });
+    }
+    // Renaming a client renames it inside its share link and report links too,
+    // so the old name stops showing and a later delete still finds them.
+    function renameClientInLinks(oldName, newName) {
+      const token = state.shares && state.shares[newName];   // already moved to the new name
+      if (token) queueLinkEdit(() => updateDoc(doc(db, 'shares', token), { client: newName }));
+      if (Array.isArray(state.reportLinks)) {
+        state.reportLinks.forEach(r => {
+          if (!r || !Array.isArray(r.clients) || !r.clients.includes(oldName)) return;
+          r.clients = r.clients.map(x => x === oldName ? newName : x);
+          rewriteReportDoc(r.token, r.clients.slice(), { [oldName]: newName });
+        });
+      }
+    }
+
+    // When a client is deleted, its old links must stop showing its data:
+    // the share link is deleted, and the client is taken out of every report link
+    // (a report that only had this client is deleted).
+    function takeDownClientLinks(c) {
+      if (state.shares && state.shares[c]) {
+        const token = state.shares[c];
+        delete state.shares[c];
+        deleteDoc(doc(db, 'shares', token)).catch(() => {});
+      }
+      if (state.reportLinks && state.reportLinks.length) {
+        state.reportLinks = state.reportLinks.filter(r => {
+          if (!r || !Array.isArray(r.clients) || !r.clients.includes(c)) return true;
+          const rest = r.clients.filter(x => x !== c);
+          if (!rest.length) { deleteDoc(doc(db, 'reports', r.token)).catch(() => {}); return false; }
+          r.clients = rest;
+          rewriteReportDoc(r.token, rest.slice());
+          return true;
+        });
+      }
+    }
+    // Clean up links left behind by clients deleted in an older version,
+    // including a client that was renamed and then deleted before 1.0.4.
+    function sweepOrphanLinks() {
+      if (!Array.isArray(state.clients)) return false;
+      const orphans = new Set();
+      if (state.shares) Object.keys(state.shares).forEach(name => { if (!state.clients.includes(name)) orphans.add(name); });
+      if (Array.isArray(state.reportLinks)) state.reportLinks.forEach(r => {
+        if (r && Array.isArray(r.clients)) r.clients.forEach(name => { if (!state.clients.includes(name)) orphans.add(name); });
+      });
+      orphans.forEach(name => takeDownClientLinks(name));
+      return orphans.size > 0;
     }
 
     function renderManageClients() {
@@ -1017,6 +1116,7 @@
             : `Delete "${c}"? This cannot be undone.`;
           if (!confirm(msg)) return;
           state.clients = state.clients.filter(x => x !== c);
+          takeDownClientLinks(c);
           delete state.entries[c];
           if (state.clientCurrency) delete state.clientCurrency[c];
           if (state.activeClient === c) state.activeClient = state.clients[0];
@@ -1537,7 +1637,7 @@
 
       // Footer
       pdf.setFont('helvetica', 'normal'); pdf.setFontSize(8); pdf.setTextColor(HINT[0], HINT[1], HINT[2]);
-      pdf.text('Generated with DigiTally — Bruder Motion', W / 2, H - 40, { align: 'center' });
+      pdf.text('Generated with DigiTally — © 2026 BruderMotion. All rights reserved.', W / 2, H - 40, { align: 'center' });
 
       pdf.save(docNo + '_' + state.activeClient.replace(/[^a-z0-9]/gi, '_') + '.pdf');
       document.getElementById('invoiceOverlay').classList.remove('visible');
@@ -1580,6 +1680,9 @@
       // Write to Firestore in background
       const entries = state.entries[shareTargetClient] || [];
       if (!state.shares) state.shares = {};
+      // Regenerate: delete the old link so it stops working.
+      const oldToken = state.shares[shareTargetClient];
+      if (oldToken && oldToken !== token) deleteDoc(doc(db, 'shares', oldToken)).catch(() => {});
       state.shares[shareTargetClient] = token;
       setDoc(doc(db, 'shares', token), { uid: currentUser.uid, client: shareTargetClient, entries: JSON.stringify(entries) });
       saveToCloud();
@@ -1629,7 +1732,8 @@
           const results = document.getElementById('reportShareResults');
           results.innerHTML = '';
           Object.entries(clientsData).forEach(([client, entries]) => {
-            if (entries.length && entries[0].currency) { activeCurrency = entries[0].currency; }
+            if (!Array.isArray(entries)) return;
+            if (entries.length && entries[0].currency) { activeCurrency = safeCur(entries[0].currency); }
             const owed = entries.filter(e => !e.paid).reduce((s,e) => s+entryInActive(e), 0);
             const paid = entries.filter(e => e.paid).reduce((s,e) => s+entryInActive(e), 0);
             const card = document.createElement('div');
@@ -1673,8 +1777,9 @@
           return true;
         }
         const data = snap.data();
-        const entries = JSON.parse(data.entries || '[]');
-        if (entries.length && entries[0].currency) { activeCurrency = entries[0].currency; applyActiveCurrency(); }
+        const parsedEntries = JSON.parse(data.entries || '[]');
+        const entries = Array.isArray(parsedEntries) ? parsedEntries : [];
+        if (entries.length && entries[0].currency) { activeCurrency = safeCur(entries[0].currency); applyActiveCurrency(); }
         document.getElementById('loadingScreen').style.display = 'none';
         document.getElementById('shareScreen').style.display = 'block';
         document.getElementById('shareClientLabel').textContent = `${data.client} — read-only shared view`;
@@ -1849,8 +1954,15 @@
       const token = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
       const label = `${fromDate.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})} — ${toDate.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}`;
       const url = `${location.origin}${location.pathname}?report=${token}`;
+      // Regenerate: the link shown above is replaced, so the old one stops working.
+      const prevToken = document.getElementById('reportLinkBox').style.display === 'block'
+        ? (document.getElementById('reportLinkInput').value.split('?report=')[1] || null) : null;
       // Update UI instantly
       if (!state.reportLinks) state.reportLinks = [];
+      if (prevToken && prevToken !== token) {
+        state.reportLinks = state.reportLinks.filter(r => r.token !== prevToken);
+        deleteDoc(doc(db, 'reports', prevToken)).catch(() => {});
+      }
       state.reportLinks.push({ token, clients: selected, label });
       document.getElementById('reportLinkInput').value = url;
       document.getElementById('reportLinkBox').style.display = 'block';
@@ -1922,7 +2034,7 @@
     function formatDate(iso) { return parseLocalDate(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
     function editedTag(entry) { return entry.editedAt ? ' · edited ' + parseLocalDate(entry.editedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''; }
     function groupKey(iso) { const d = parseLocalDate(iso); return state.period === 'week' ? d.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }) : d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }); }
-    function escHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function escHtml(str) { return String(str == null ? '' : str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,"&#39;"); }
   </script>
 </body>
 </html>
